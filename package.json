@@ -4,7 +4,8 @@
   "description": "a project used for the unit testing with NodeJS home task",
   "main": "index.js",
   "scripts": {
-    "test": "npm test",
+    "test": "mocha ./src/tests/**/*spec.js",
+    "check-coverage": "nyc --reporter=lcov --reporter=text mocha './src/tests/**/*spec.js'",
     "start-server": "node ./src/server/server.js",
     "eslint": "eslint ./"
   },
@@ -20,7 +21,8 @@
   "homepage": "https://github.com/stranger2626/unit-testing-with-mocks-home-task#readme",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run eslint"
+      "pre-commit": "npm run eslint",
+      "pre-push": "npm run check-coverage"
     }
   },
   "dependencies": {
@@ -28,6 +30,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "chai": "^4.3.7",
     "eslint": "^7.10.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0",
@@ -36,6 +39,9 @@
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.3.0",
     "mocha": "^8.1.3",
-    "nyc": "^15.1.0"
+    "nock": "^13.3.1",
+    "nyc": "^15.1.0",
+    "proxyquire": "^2.1.3",
+    "sinon": "^15.1.0"
   }
 }
